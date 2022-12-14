@@ -7,7 +7,8 @@ define(
         'mage/url',
         'Magento_Checkout/js/model/quote',
         'domReady!',
-        'Magento_Ui/js/form/element/abstract'
+        'Magento_Ui/js/form/element/abstract',
+        'Magento_Ui/js/form/form'
     ],
     function (ko, $, Component, url, quote) {
 
@@ -21,50 +22,14 @@ define(
 
 
 
+
             initialize: function () {
 
 
                 var self = this;
                 this._super();
 
-                var result = '';
 
-
-
-                let enable = this.myKey2;
-                let threshold_value = Number(this.myKey3);
-                let countryList = this.myKey;
-                let selectedValue = this.myKey4;
-                let selectedCountry = this.myKey5;
-
-                let countryMatch = this.showCheckboxByCountry(selectedCountry, countryList);
-                let thresholdValueMatch = this.showCheckboxByThreshold(selectedValue, threshold_value);
-
-
-
-
-                if (enable === '1') {
-
-
-                    if (countryMatch) {
-                        if (thresholdValueMatch) {
-                            result = true;
-
-                        }
-                        else {
-                            result = false;
-                        }
-                    }
-                    else {
-                        result = false;
-                    }
-                }
-                else {
-                    result = false;
-                }
-
-
-                this.showCheckbox = ko.observable(result);
 
 
 
@@ -89,14 +54,18 @@ define(
                     if (newValue) {
                         checkVal = 1;
 
-                        $('.actions-toolbar .primary .action.primary.checkout').attr('disabled', false);
+
+                        let elem = document.querySelectorAll('button')[5];
+                        console.log(elem);
+                        elem.disabled = false;
 
 
-                        console.log(self);
                     }
                     else {
                         checkVal = 0;
-                        $('.actions-toolbar .primary .action.primary.checkout').attr('disabled', true);
+                        let elem = document.querySelectorAll('button')[5];
+                        console.log(elem);
+                        elem.disabled = true;
                     }
                     $.ajax({
                         showLoader: true,
@@ -111,9 +80,50 @@ define(
                 return this;
             },
 
-            showCheckboxByCountry: function (selectedCountry, countryList) {
+            showCheckbox: function () {
 
-                console.log("ethi");
+
+                var result = '';
+
+
+
+                let enable = this.myKey2;
+                let threshold_value = Number(this.myKey3);
+                let countryList = this.myKey;
+                let selectedValue = this.myKey4;
+                let selectedCountry = quote.shippingAddress().countryId;;
+
+
+
+                let countryMatch = this.showCheckboxByCountry(selectedCountry, countryList);
+                let thresholdValueMatch = this.showCheckboxByThreshold(selectedValue, threshold_value);
+
+
+
+                if (enable === '1') {
+
+
+                    if (countryMatch) {
+                        if (thresholdValueMatch) {
+                            result = true;
+
+                        }
+                        else {
+                            result = false;
+                        }
+                    }
+                    else {
+                        result = false;
+                    }
+                }
+                else {
+                    result = false;
+                }
+
+                return result;
+
+            },
+            showCheckboxByCountry: function (selectedCountry, countryList) {
 
                 let countryArray = countryList.split(",");
                 let result = countryArray.includes(selectedCountry);
@@ -122,9 +132,6 @@ define(
             },
 
             showCheckboxByThreshold: function (selectedValue, threshold_value) {
-                var self = this;
-
-
 
                 console.log(selectedValue);
 

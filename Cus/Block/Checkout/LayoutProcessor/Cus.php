@@ -51,15 +51,15 @@ class Cus implements LayoutProcessorInterface
 
 
 
-        $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']['payment']['children']['afterMethods']['children']['custom-checkbox']['myKey'] = $countryList;
+        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']['shippingAddress']['children']['shipping-address-fieldset']['children']['custom-checkbox']['myKey'] = $countryList;
 
-        $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']['payment']['children']['afterMethods']['children']['custom-checkbox']['myKey2'] = $status;
+        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']['shippingAddress']['children']['shipping-address-fieldset']['children']['custom-checkbox']['myKey2'] = $status;
 
-        $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']['payment']['children']['afterMethods']['children']['custom-checkbox']['myKey3'] = $threshold;
+        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']['shippingAddress']['children']['shipping-address-fieldset']['children']['custom-checkbox']['myKey3'] = $threshold;
 
-        $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']['payment']['children']['afterMethods']['children']['custom-checkbox']['myKey4'] = $s;
+        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']['shippingAddress']['children']['shipping-address-fieldset']['children']['custom-checkbox']['myKey4'] = $s;
 
-        $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']['payment']['children']['afterMethods']['children']['custom-checkbox']['myKey5'] = $estimated_country;
+        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']['shippingAddress']['children']['shipping-address-fieldset']['children']['custom-checkbox']['myKey5'] = $estimated_country;
 
 
 
